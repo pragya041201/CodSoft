@@ -1,0 +1,69 @@
+def display_menu():
+    print("\nSimple Calculator")
+    print("Select operation:")
+    print("1. Addition (+)")
+    print("2. Subtraction (-)")
+    print("3. Multiplication (*)")
+    print("4. Division (/)")
+    print("5. Modulus (%)")
+    print("6. Exponentiation (**)")
+    print("7. Floor Division (//)")
+    print("8. Exit")
+
+def get_numbers():
+    try:
+        num1 = float(input("Enter first number: "))
+        num2 = float(input("Enter second number: "))
+        return num1, num2
+    except ValueError:
+        print("Invalid input. Please enter numeric values.")
+        return get_numbers()
+
+def calculate(choice, num1, num2):
+    if choice == '1':
+        return num1 + num2
+    elif choice == '2':
+        return num1 - num2
+    elif choice == '3':
+        return num1 * num2
+    elif choice == '4':
+        if num2 != 0:
+            return num1 / num2
+        else:
+            return "Error: Division by zero is undefined."
+    elif choice == '5':
+        if num2 != 0:
+            return num1 % num2
+        else:
+            return "Error: Division by zero is undefined."
+    elif choice == '6':
+        return num1 ** num2
+    elif choice == '7':
+        if num2 != 0:
+            return num1 // num2
+        else:
+            return "Error: Division by zero is undefined."
+    else:
+        return "Invalid choice."
+
+def main():
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-8): ")
+        if choice in {'1', '2', '3', '4', '5', '6', '7'}:
+            num1, num2 = get_numbers()
+            result = calculate(choice, num1, num2)
+            print(f"The result is: {result}")
+        elif choice == '8':
+            print("Exiting the calculator. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+        
+        another_calculation = input("\nDo you want to perform another calculation? (yes/no): ").lower()
+        if another_calculation != 'yes':
+            print("Exiting the calculator. Goodbye!")
+            break
+
+if __name__ == "__main__":
+    main()
